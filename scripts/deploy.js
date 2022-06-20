@@ -4,8 +4,8 @@ async function main() {
 
   const Token = await ethers.getContractFactory("Token");
   const totalSupply = web3.utils.toWei('10000', 'ether');
-  const name = "Stan Token";
-  const symbol = "STT";
+  const name = "Stan Token 2";
+  const symbol = "STT2";
   const token = await Token.deploy(name, symbol, totalSupply);
 
   console.log("Token address:", token.address);
