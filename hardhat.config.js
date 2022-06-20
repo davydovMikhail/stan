@@ -2,6 +2,7 @@ require("@nomiclabs/hardhat-waffle");
 require("hardhat-gas-reporter");
 require("@nomiclabs/hardhat-web3");
 require('dotenv').config();
+require("./tasks");
 
 const { PRIVATE_KEY } = process.env;
 
