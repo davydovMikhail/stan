@@ -7,7 +7,7 @@ const keccak256 = require("keccak256");
 describe("Token", function () {
   it("Token", async function () {
     console.log("1. Contract creation and users");
-    [owner, controller, controller2, user1, user2, user3] = await ethers.getSigners()
+    [owner, controller, controller2, user1, user2, user3, user4] = await ethers.getSigners()
     const Token = await ethers.getContractFactory("TokenV2");
     const token = await Token.connect(owner).deploy("Token", "TKN", parseEther("10000"));
     await token.deployed();
@@ -38,6 +38,15 @@ describe("Token", function () {
     await token.connect(user2).transferFrom(controller2.address, user3.address, parseEther("250"));
     expect(await token.balanceOf(user3.address)).to.equal(parseEther("500"));
     
+    console.log("5. Unsetting lock");
+    await token.connect(controller).setLock();
+    await token.connect(owner).mint(user4.address, parseEther("2000"));
+    await token.connect(user4).transfer(user2.address, parseEther("500"))
+    expect(await token.balanceOf(user4.address)).to.equal(parseEther("1500"));
+    await token.connect(user4).approve(user3.address, parseEther("500"));
+    await token.connect(user3).transferFrom(user4.address, user3.address, parseEther("250"));
+    expect(await token.balanceOf(user3.address)).to.equal(parseEther("750"));
+
     // const controllerRole = keccak256("TOKEN_CONTROLLER").toString('hex');
     // console.log("Role in hash:", controllerRole);
     

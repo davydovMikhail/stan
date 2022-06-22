@@ -1,16 +1,14 @@
 const { task } = require("hardhat/config");
 require("@nomiclabs/hardhat-waffle");
 require('dotenv').config();
-require("@nomiclabs/hardhat-web3");
 
-task("mint", "mint of tokens")
-    .addParam("to", "recipient of tokens")
-    .addParam("amount", "amount of mint")
+task("addController", "adding controller")
+    .addParam("address", "controller's address")
     .setAction(async function (taskArgs, hre) {
         const token = await hre.ethers.getContractAt("TokenV2", process.env.ADDRESS);
         try {
-            await token.mint(taskArgs.to, web3.utils.toWei(taskArgs.amount, 'ether'))
-            console.log(`you minted ${taskArgs.amount} tokens at ${taskArgs.to}`);
+            await token.addController(taskArgs.address);
+            console.log("Done");
         } catch (e) {
             console.log('error',e)
         }
