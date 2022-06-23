@@ -5,6 +5,8 @@ exports.burn = require("./burn");
 exports.setLock = require("./set-lock");
 exports.addController = require("./add-controller");
 exports.removeController = require("./remove-controller");
+exports.setLockTime = require("./set-lock-time");
+
 
 
 

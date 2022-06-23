@@ -8,7 +8,7 @@ describe("Token", function () {
   it("Token", async function () {
     console.log("1. Contract creation and users");
     [owner, controller, user1, user2, user3] = await ethers.getSigners()
-    const Token = await ethers.getContractFactory("TokenV2");
+    const Token = await ethers.getContractFactory("TokenV3");
     const token = await Token.connect(owner).deploy("Token", "TKN", parseEther("10000"));
     await token.deployed();
     

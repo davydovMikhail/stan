@@ -7,7 +7,7 @@ const { parseEther } = require("ethers/lib/utils");
 describe("Token tests", function () {
   beforeEach(async() => {
     [owner, user1, user2, user3] = await ethers.getSigners()
-    let TokenF = await ethers.getContractFactory("TokenV2")
+    let TokenF = await ethers.getContractFactory("TokenV3")
     primaryTotalSupply = parseEther("10000")
     token = await TokenF.connect(owner).deploy("Token", "TKN", primaryTotalSupply)
   })
