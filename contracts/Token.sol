@@ -30,12 +30,4 @@ contract Token is ERC20 {
     function setNewOwner(address _newOwner) external onlyOwner {
         owner = _newOwner;
     }
-
-    function mint(address _account, uint256 _supply) external onlyOwner {
-        _mint(_account, _supply);
-    }
-
-    function burn(address _account, uint256 _supply) external onlyOwner {
-        _burn(_account, _supply);
-    }
 }
