@@ -56,25 +56,25 @@ describe("Token tests", function () {
     expect(await token.allowance(user2.address, user3.address)).to.equal(valueForApprove2.add(valueForIncrease2).sub(valueForDecrease2));
   })
 
-  it("mint and burn", async function () {
-    const valueForMint1 = parseEther("50")
-    const valueForMint2 = parseEther("75")
-    const valueForBurn1 = parseEther("20")
-    const valueForBurn2 = parseEther("40")
-    await token.connect(owner).mint(user1.address, valueForMint1)
-    // await expect(token.connect(user1).mint(user2.address, valueForMint1)).to.be.revertedWith("this feature is only available to the owner of the contract")
-    expect(await token.balanceOf(user1.address)).to.equal(valueForMint1);
-    await token.connect(owner).mint(user2.address, valueForMint2)
-    expect(await token.balanceOf(user2.address)).to.equal(valueForMint2);
-    expect(await token.totalSupply()).to.equal(primaryTotalSupply.add(valueForMint1).add(valueForMint2));
-    const balanceAnyUser = await token.balanceOf(user1.address)
-    // await expect(token.connect(owner).burn(user1.address, balanceAnyUser.mul(2))).to.be.revertedWith("the withdrawn amount must be less than the balance of the specified address")
-    await token.connect(owner).burn(user1.address, valueForBurn1)
-    // await expect(token.connect(user1).burn(user2.address, valueForBurn1)).to.be.revertedWith("this feature is only available to the owner of the contract")
-    expect(await token.balanceOf(user1.address)).to.equal(valueForMint1.sub(valueForBurn1));
-    await token.connect(owner).burn(user2.address, valueForBurn2)
-    expect(await token.balanceOf(user2.address)).to.equal(valueForMint2.sub(valueForBurn2));
-  })
+  // it("mint and burn", async function () {
+  //   const valueForMint1 = parseEther("50")
+  //   const valueForMint2 = parseEther("75")
+  //   const valueForBurn1 = parseEther("20")
+  //   const valueForBurn2 = parseEther("40")
+  //   await token.connect(owner).mint(user1.address, valueForMint1)
+  //   // await expect(token.connect(user1).mint(user2.address, valueForMint1)).to.be.revertedWith("this feature is only available to the owner of the contract")
+  //   expect(await token.balanceOf(user1.address)).to.equal(valueForMint1);
+  //   await token.connect(owner).mint(user2.address, valueForMint2)
+  //   expect(await token.balanceOf(user2.address)).to.equal(valueForMint2);
+  //   expect(await token.totalSupply()).to.equal(primaryTotalSupply.add(valueForMint1).add(valueForMint2));
+  //   const balanceAnyUser = await token.balanceOf(user1.address)
+  //   // await expect(token.connect(owner).burn(user1.address, balanceAnyUser.mul(2))).to.be.revertedWith("the withdrawn amount must be less than the balance of the specified address")
+  //   await token.connect(owner).burn(user1.address, valueForBurn1)
+  //   // await expect(token.connect(user1).burn(user2.address, valueForBurn1)).to.be.revertedWith("this feature is only available to the owner of the contract")
+  //   expect(await token.balanceOf(user1.address)).to.equal(valueForMint1.sub(valueForBurn1));
+  //   await token.connect(owner).burn(user2.address, valueForBurn2)
+  //   expect(await token.balanceOf(user2.address)).to.equal(valueForMint2.sub(valueForBurn2));
+  // })
 
   it("transfer", async function () {
     const valueForRequire = parseEther("200")

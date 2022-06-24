@@ -17,7 +17,7 @@ describe("Token", function () {
     await token.deployed();
     
     console.log("2. Transfer without lock");
-    await token.connect(owner).mint(user1.address, parseEther("2000"));
+    await token.connect(owner).transfer(user1.address, parseEther("2000"));
     await token.connect(user1).transfer(user2.address, parseEther("500"))
     expect(await token.balanceOf(user1.address)).to.equal(parseEther("1500"));
     await token.connect(user1).approve(user3.address, parseEther("500"));
@@ -32,7 +32,7 @@ describe("Token", function () {
     await expect(token.connect(user1).approve(user2.address, parseEther("500"))).to.be.revertedWith("Transfer is temporarily locked");
     await expect(token.connect(user3).transferFrom(user1.address, user3.address, parseEther("250"))).to.be.revertedWith("Transfer is temporarily locked");
     await token.connect(owner).addController(controller2.address);
-    await token.connect(owner).mint(controller2.address, parseEther("2000"));
+    await token.connect(owner).transfer(controller2.address, parseEther("2000"));
 
     console.log("4. Setting controller");
     await token.connect(controller2).transfer(user2.address, parseEther("500"));
@@ -45,7 +45,7 @@ describe("Token", function () {
     console.log("5. Unsetting lock");
     await ethers.provider.send("evm_increaseTime", [lockTime])
     await ethers.provider.send("evm_mine")
-    await token.connect(owner).mint(user4.address, parseEther("2000"));
+    await token.connect(owner).transfer(user4.address, parseEther("2000"));
     await token.connect(user4).transfer(user2.address, parseEther("500"))
     expect(await token.balanceOf(user4.address)).to.equal(parseEther("1500"));
     await token.connect(user4).approve(user3.address, parseEther("500"));

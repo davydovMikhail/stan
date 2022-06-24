@@ -30,20 +30,20 @@ describe("Token", function () {
     await token.connect(controller).setNewOwner(user3.address);
     expect(await token.getOwner()).to.equal(user3.address);
 
-    console.log("5. Minting");
-    // await expect(token.connect(user1).mint(user1.address, parseEther("2000"))).to.be.revertedWith("This function can only be called by the contract owner");
+    // console.log("5. Minting");
+    // // await expect(token.connect(user1).mint(user1.address, parseEther("2000"))).to.be.revertedWith("This function can only be called by the contract owner");
 
-    await token.connect(owner).addController(user2.address);
-    await token.connect(user2).mint(user2.address, parseEther("2000"));
-    expect(await token.totalSupply()).to.equal(parseEther('12000'));
-    expect(await token.balanceOf(user2.address)).to.equal(parseEther('2000'));
+    // await token.connect(owner).addController(user2.address);
+    // await token.connect(user2).mint(user2.address, parseEther("2000"));
+    // expect(await token.totalSupply()).to.equal(parseEther('12000'));
+    // expect(await token.balanceOf(user2.address)).to.equal(parseEther('2000'));
 
-    console.log("6. Burning");
-    // await expect(token.connect(user1).burn(owner.address ,parseEther("2000"))).to.be.revertedWith("This function can only be called by the contract owner");
-    await token.connect(user2).burn(owner.address ,parseEther("2000"));
-    expect(await token.totalSupply()).to.equal(parseEther('10000'));
-    expect(await token.balanceOf(owner.address)).to.equal(parseEther('8000'));
-    await token.connect(owner).removeController(user2.address);
+    // console.log("6. Burning");
+    // // await expect(token.connect(user1).burn(owner.address ,parseEther("2000"))).to.be.revertedWith("This function can only be called by the contract owner");
     // await token.connect(user2).burn(owner.address ,parseEther("2000"));
+    // expect(await token.totalSupply()).to.equal(parseEther('10000'));
+    // expect(await token.balanceOf(owner.address)).to.equal(parseEther('8000'));
+    // await token.connect(owner).removeController(user2.address);
+    // // await token.connect(user2).burn(owner.address ,parseEther("2000"));
   });
 });
