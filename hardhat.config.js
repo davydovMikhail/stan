@@ -16,10 +16,14 @@ module.exports = {
       chainId: 97,
       accounts: [`0x${PRIVATE_KEY}`]
     },
-
     bscmainnet: {
       url: "https://bsc-dataseed.binance.org/",
       chainId: 56,
+      accounts: [`0x${PRIVATE_KEY}`]
+    },
+    optimismkovan: {
+      url: "https://kovan.optimism.io",
+      chainId: 69,
       accounts: [`0x${PRIVATE_KEY}`]
     }
   }
